@@ -31,12 +31,11 @@ async def analyze_stock(ctx, symbol: str):
 
         latest_price = float(data["Close"].iloc[-1])
         prompt = (
-            f"You're a financial analyst. The stock symbol is {symbol}.
-"
-            f"The current price is ${latest_price:.2f}.
-"
-            f"Should I BUY, SELL, or HOLD? Respond in 1-2 sentences."
-        )
+    f"You're a financial analyst. The stock symbol is {symbol}.\n"
+    f"The current price is ${latest_price:.2f}.\n"
+    f"Should I BUY, SELL, or HOLD? Respond in 1–2 sentences."
+)
+
 
         response = requests.post(
             GROQ_API_URL,
