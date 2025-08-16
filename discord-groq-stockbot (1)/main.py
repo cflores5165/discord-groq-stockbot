@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+DISCORD_TOKEN = os.getenv("MVA56LZTB62")
+GROQ_API_KEY = os.getenv("GROQ_146827ZYP")
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 intents = discord.Intents.default()
@@ -33,7 +33,7 @@ async def analyze_stock(ctx, symbol: str):
         prompt = (
     f"""You're a financial analyst. The stock symbol is {symbol}.
 The current price is ${latest_price:.2f}.
-Should I BUY, SELL, or HOLD? Respond in 1–2 sentences."""
+Should I BUY, SELL, or HOLD? Respond in 1–2 sentences.Afterwards show me a tradeset up AFTER searching the web and double checking"""
 )
 
 
