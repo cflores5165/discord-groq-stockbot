@@ -17,16 +17,16 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"✅ Logged in as {bot.user}")
+    print(f"Logged in as {bot.user}")
 
 @bot.command(name="analyze")
 async def analyze_stock(ctx, symbol: str):
-    await ctx.send(f"📊 Analyzing `{symbol}`...")
+    await ctx.send(f"Analyzing `{symbol}`...")
 
     try:
         data = yf.download(symbol, period="1mo", interval="1d")
         if data.empty:
-            await ctx.send(" Couldn't fetch data.")
+            await ctx.send(" Couldn't bring source ")
             return
 
         latest_price = float(data["Close"].iloc[-1])
@@ -52,7 +52,7 @@ Should I BUY, SELL, or HOLD? Respond in 1–2 sentences.Afterwards show me a tra
 
         result = response.json()
         answer = result["choices"][0]["message"]["content"]
-        await ctx.send(f"🧠 {answer}")
+        await ctx.send(f"Setup here {answer}")
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
