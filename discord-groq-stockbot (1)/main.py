@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DISCORD_TOKEN = os.getenv("MVA56LZTB62")
-GROQ_API_KEY = os.getenv("GROQ_146827ZYP")
+DISCORD_TOKEN = os.getenv("Discord_Token")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 intents = discord.Intents.default()
@@ -26,14 +26,14 @@ async def analyze_stock(ctx, symbol: str):
     try:
         data = yf.download(symbol, period="1mo", interval="1d")
         if data.empty:
-            await ctx.send("⚠️ Couldn't fetch data.")
+            await ctx.send(" Couldn't fetch data.")
             return
 
         latest_price = float(data["Close"].iloc[-1])
         prompt = (
     f"""You're a financial analyst. The stock symbol is {symbol}.
 The current price is ${latest_price:.2f}.
-Should I BUY, SELL, or HOLD? Respond in 1–2 sentences.Afterwards show me a tradeset up AFTER searching the web and double checking"""
+Should I BUY, SELL, or HOLD? Respond in 1–2 sentences.Afterwards show me a tradesetup up AFTER searching the web and double checking deeply analyze market data """
 )
 
 
@@ -55,7 +55,7 @@ Should I BUY, SELL, or HOLD? Respond in 1–2 sentences.Afterwards show me a tra
         await ctx.send(f"🧠 {answer}")
 
     except Exception as e:
-        await ctx.send(f"❌ Error: {e}")
-        print("Groq API Error:", e)
+        await ctx.send(f"Error: {e}")
+        print("AI Error:", e)
 
 bot.run(DISCORD_TOKEN)
